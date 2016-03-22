@@ -1,8 +1,7 @@
-CACHE
+CACHE MANIFEST
 index.html
 index.css
 index.js
 
-
 NETWORK:
-logo.jpg
+*
