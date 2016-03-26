@@ -1,7 +1,15 @@
 CACHE MANIFEST
-index.html
-index.css
+#可省略,效果一致
+CACHE:
 index.js
+logo.jpg
 
+
+#没有指定CACHE的文件都不会被缓存,必须通过网络通信
 NETWORK:
 *
+
+#建立有网/无网映射,能够在线访问的资源文件,不能够在线访问的资源文件
+FALLBACK
+index.css index_cache.css
+
