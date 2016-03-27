@@ -1,0 +1,51 @@
+﻿<!DOCTYPE HTML>
+<html manifest="applicationCacheEvent.manifest">
+<head>
+    <meta charset="UTF-8">
+    <title>applicationCache事件流程示例</title>
+    <script>
+        function init() {
+            var msg = document.getElementById("msg");
+
+            //浏览器检查nanifest属性,如果有,触发checking,如果没有找到,触发error事件
+            applicationCache.addEventListener("checking", function () {
+                msg.innerHTML += "checking<br/>";
+            }, true);
+
+            //第二次访问,没有更新时候触发
+            applicationCache.addEventListener("noupdate", function () {
+                msg.innerHTML += "noupdate<br/>";
+            }, true);
+
+            //第一次访问和之后有更新时触发下载事件
+            applicationCache.addEventListener("downloading", function () {
+                msg.innerHTML += "downloading<br/>";
+            }, true);
+
+            //下载事件周期性触发progress事件
+            applicationCache.addEventListener("progress", function () {
+                msg.innerHTML += "progress<br/>";
+            }, true);
+
+            //第二次访问,更新触发
+            applicationCache.addEventListener("updateready", function () {
+                msg.innerHTML += "updateready<br/>";
+            }, true);
+
+            //第一次访问,所有资源请求完毕触发
+            applicationCache.addEventListener("cached", function () {
+                msg.innerHTML += "cached<br/>";
+            }, true);
+
+            //请求错误时候触发,缓存名单或者引用文件产生404错误,410错误,或者更新本地缓存时,缓存文件再次更改时候触发
+            applicationCache.addEventListener("error", function () {
+                msg.innerHTML += "error<br/>";
+            }, true);
+        }
+    </script>
+</head>
+<body onload="init()">
+<h1>applicationCache事件流程示例</h1>
+<p id="msg"></p>
+</body>
+</html>
